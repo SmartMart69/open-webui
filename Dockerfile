@@ -25,7 +25,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-COPY . .
+RUN git clone https://github.com/SmartMart69/open-webui.git /app
 ENV APP_BUILD_HASH=${BUILD_HASH}
 RUN npm run build
 
