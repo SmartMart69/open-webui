@@ -18,6 +18,7 @@
 	let name = '';
 	let email = '';
 	let password = '';
+	let confirmPassword = '';
 
 	const setSessionUser = async (sessionUser) => {
 		if (sessionUser) {
@@ -44,15 +45,22 @@
 	};
 
 	const signUpHandler = async () => {
-		const sessionUser = await userSignUp(name, email, password, generateInitialsImage(name)).catch(
-			(error) => {
-				toast.error(error);
-				return null;
-			}
-		);
+	// Überprüfen, ob die beiden Passwörter übereinstimmen
+	if (password !== confirmPassword) {
+		toast.error($i18n.t('Passwords do not match.'));
+		return;
+	}
 
-		await setSessionUser(sessionUser);
-	};
+	const sessionUser = await userSignUp(name, email, password, generateInitialsImage(name)).catch(
+		(error) => {
+			toast.error(error);
+			return null;
+		}
+	);
+
+	await setSessionUser(sessionUser);
+};
+
 
 	const submitHandler = async () => {
 		if (mode === 'signin') {
@@ -217,6 +225,20 @@
 										required
 									/>
 								</div>
+								{#if mode === 'signup'}
+								<div>
+								<div class=" text-sm font-medium text-left mb-1">{$i18n.t('Confirm Password')}</div>
+								<input
+									bind:value={confirmPassword}
+									type="password"
+									class=" px-5 py-3 rounded-2xl w-full text-sm outline-none border dark:border-none dark:bg-gray-900"
+									placeholder={$i18n.t('Confirm Your Password')}
+									autocomplete="new-password"
+									required
+								/>
+								</div>
+								{/if}
+								
 							</div>
 						{/if}
 
