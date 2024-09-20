@@ -227,12 +227,12 @@
 								</div>
 								{#if mode === 'signup'}
 								<div>
-								<div class=" text-sm font-medium text-left mb-1">{$i18n.t('Confirm Password')}</div>
+								<div class=" text-sm font-medium text-left mb-1 mt-2">{$i18n.t('Confirm Password')}</div>
 								<input
 									bind:value={confirmPassword}
 									type="password"
 									class=" px-5 py-3 rounded-2xl w-full text-sm outline-none border dark:border-none dark:bg-gray-900"
-									placeholder={$i18n.t('Confirm Your Password')}
+									placeholder={$i18n.t('Confirm Password')}
 									autocomplete="new-password"
 									required
 								/>
