@@ -47,7 +47,7 @@
 		<div>
 			<div class=" mb-2.5 text-sm font-medium flex space-x-2 items-center">
 				<div>
-					{'ChatGurus GPT'}
+					{$WEBUI_NAME}
 					{$i18n.t('Version')}
 				</div>
 			</div>
