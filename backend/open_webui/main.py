@@ -2265,7 +2265,7 @@ async def get_manifest_json():
         "short_name": WEBUI_NAME,
         "start_url": "/",
         "display": "standalone",
-        "background_color": "#343541",
+        "background_color": "#000000",
         "orientation": "portrait-primary",
         "icons": [
             {
