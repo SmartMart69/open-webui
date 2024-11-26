@@ -191,6 +191,23 @@ __builtins__.input = input`);
 		}
 	};
 
+	function downloadBlob(base64Data: string, filename: string, mimeType: string) {
+		const binaryData = atob(base64Data); // Base64-Daten dekodieren
+		const byteArray = new Uint8Array(binaryData.length);
+
+		for (let i = 0; i < binaryData.length; i++) {
+			byteArray[i] = binaryData.charCodeAt(i);
+		}
+
+		const blob = new Blob([byteArray], { type: mimeType });
+		const link = document.createElement('a');
+		link.href = URL.createObjectURL(blob);
+		link.download = filename;
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+	}
+
 	const executePythonAsWorker = async (code) => {
 		result = null;
 		stdout = null;
@@ -236,6 +253,18 @@ __builtins__.input = input`);
 			data['stdout'] && (stdout = data['stdout']);
 			data['stderr'] && (stderr = data['stderr']);
 			data['result'] && (result = data['result']);
+
+			// Prüfen, ob das Ergebnis ein PDF ist
+			if (result && typeof result === 'string') {
+				try {
+					const parsedResult = JSON.parse(result);
+					if (parsedResult.type === 'pdf' && parsedResult.data) {
+						downloadBlob(parsedResult.data, parsedResult.filename || 'document.pdf', 'application/pdf');
+					}
+				} catch (e) {
+					console.error('Fehler beim Parsen des Ergebnisses:', e);
+				}
+			}
 
 			executing = false;
 		};
