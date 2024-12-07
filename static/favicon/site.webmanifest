@@ -1,6 +1,6 @@
 {
-  "name": "Open WebUI",
-  "short_name": "WebUI",
+  "name": "ChatGurus GPT",
+  "short_name": "CG GPT",
   "icons": [
     {
       "src": "/favicon/web-app-manifest-192x192.png",
