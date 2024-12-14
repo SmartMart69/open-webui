@@ -99,7 +99,7 @@ for source in log_sources:
 log.setLevel(SRC_LOG_LEVELS["CONFIG"])
 
 
-WEBUI_NAME = os.environ.get("WEBUI_NAME", "ChatGurus GPT")
+WEBUI_NAME = os.environ.get("WEBUI_NAME", "OmniChat")
 
 
 WEBUI_URL = os.environ.get("WEBUI_URL", "http://localhost:3000")
