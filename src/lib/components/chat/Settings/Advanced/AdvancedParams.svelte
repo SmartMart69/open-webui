@@ -727,7 +727,7 @@
 	<div class=" py-0.5 w-full justify-between">
 		<Tooltip
 			content={$i18n.t(
-				'Sets the size of the context window used to generate the next token. (Default: 2048)'
+				'Sets the size of the context window used to generate the next token. (Default: 65536)'
 			)}
 			placement="top-start"
 			className="inline-tooltip"
@@ -741,7 +741,7 @@
 					class="p-1 px-3 text-xs flex rounded transition flex-shrink-0 outline-none"
 					type="button"
 					on:click={() => {
-						params.num_ctx = (params?.num_ctx ?? null) === null ? 2048 : null;
+						params.num_ctx = (params?.num_ctx ?? null) === null ? 65536 : null;
 					}}
 				>
 					{#if (params?.num_ctx ?? null) === null}
