@@ -600,6 +600,17 @@ def apply_params_to_form_data(form_data, model):
 
 async def process_chat_payload(request, form_data, metadata, user, model):
 
+    # Aktuelles Datum als System-Nachricht einfügen
+    from datetime import datetime
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    
+    if "messages" not in form_data:
+        form_data["messages"] = []
+    form_data["messages"] = add_or_update_system_message(
+        f"Today's date is {current_date}.",
+        form_data["messages"]
+    )
+
     form_data = apply_params_to_form_data(form_data, model)
     log.debug(f"form_data: {form_data}")
 
