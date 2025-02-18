@@ -111,6 +111,7 @@ WEBUI_NAME = os.environ.get("WEBUI_NAME", "OmniChat")
 
 WEBUI_FAVICON_URL = "https://chatgurus.de/images/favicon.png"
 
+TRUSTED_SIGNATURE_KEY = os.environ.get("TRUSTED_SIGNATURE_KEY", "")
 
 ####################################
 # ENV (dev,test,prod)
