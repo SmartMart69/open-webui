@@ -241,17 +241,18 @@
 			</div>
 		</div>
 
-		{#if $user.role === 'admin' || $user?.permissions.chat?.controls}
-			<hr class="border-gray-100 dark:border-gray-850 my-3" />
+		<hr class="border-gray-100 dark:border-gray-850 my-3" />
 
-			<div>
-				<div class=" my-2.5 text-sm font-medium">{$i18n.t('System Prompt')}</div>
-				<textarea
-					bind:value={system}
-					class="w-full rounded-lg p-4 text-sm bg-white dark:text-gray-300 dark:bg-gray-850 outline-hidden resize-none"
-					rows="4"
-				/>
-			</div>
+		<div>
+			<div class=" my-2.5 text-sm font-medium">{$i18n.t('System Prompt')}</div>
+			<textarea
+				bind:value={system}
+				class="w-full rounded-lg p-4 text-sm bg-white dark:text-gray-300 dark:bg-gray-850 outline-hidden resize-none"
+				rows="4"
+			/>
+		</div>
+
+		{#if $user.role === 'admin' || $user?.permissions.chat?.controls}
 
 			<div class="mt-2 space-y-3 pr-1.5">
 				<div class="flex justify-between items-center text-sm">
