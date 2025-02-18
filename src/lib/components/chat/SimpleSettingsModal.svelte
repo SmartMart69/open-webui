@@ -25,35 +25,28 @@
 		enableMemory = true;
 	});
 
-	// Kombiniert das Hinzufügen eines Memorys (falls Inhalt vorhanden) und das Speichern des System Prompts
 	const handleSaveAll = async () => {
-  // Beide Felder müssen etwas enthalten!
-  if (system.trim() === "" || memoryContent.trim() === "") {
-    toast.error($i18n.t('Please fill in all fields.'));
-    return; // Abbruch, falls eines der Felder leer ist
-  }
+		if (memoryContent.trim() !== "") {
+			memoryLoading = true;
+			const res = await addNewMemory(localStorage.token, memoryContent).catch((error) => {
+			toast.error(`${error}`);
+			return null;
+			});
+			if (res) {
+			toast.success($i18n.t('Memory added successfully'));
+			memoryContent = ''; // Inhalt zurücksetzen
+			}
+			memoryLoading = false;
+		}
 
-  // Memory hinzufügen
-  memoryLoading = true;
-  const res = await addNewMemory(localStorage.token, memoryContent).catch((error) => {
-    toast.error(`${error}`);
-    return null;
-  });
-  if (res) {
-    toast.success($i18n.t('Memory added successfully'));
-    memoryContent = ''; // Inhalt zurücksetzen
-  }
-  memoryLoading = false;
+		// System Prompt speichern (auch wenn leer)
+		await settings.set({ ...$settings, system, memory: enableMemory });
+		await updateUserSettings(localStorage.token, { ui: { system, memory: enableMemory } });
+		toast.success($i18n.t('Settings saved successfully!'));
 
-  // System Prompt speichern
-  await settings.set({ ...$settings, system, memory: enableMemory });
-  await updateUserSettings(localStorage.token, { ui: { system, memory: enableMemory } });
-  toast.success($i18n.t('Settings saved successfully!'));
-
-
-  // Dialog schließen
-  show = false;
-};
+		// Dialog schließen
+		show = false;
+	};
 </script>
 
 <Modal size="xl" bind:show closeOnOutsideClick={false}>
@@ -63,7 +56,7 @@
 			<div class="text-lg font-medium self-center">
 				{$i18n.t('Please personalize the system')}
 			</div>
-			<!-- Kein separater Schließen-Button -->
+		 	<!-- Kein separater Schließen-Button -->
 		</div>
 
 		<div class="px-4 pt-1 pb-4 space-y-6">
