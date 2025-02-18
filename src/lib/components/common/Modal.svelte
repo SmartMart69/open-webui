@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-
 	import { flyAndScale } from '$lib/utils/transitions';
 
 	export let show = true;
@@ -9,6 +8,8 @@
 
 	export let containerClassName = 'p-3';
 	export let className = 'bg-gray-50 dark:bg-gray-900 rounded-2xl';
+	// Neuer Parameter, standardmäßig true
+	export let closeOnOutsideClick = true;
 
 	let modalElement = null;
 	let mounted = false;
@@ -63,20 +64,19 @@
 </script>
 
 {#if show}
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
+	<!-- Outer Container: Klicks hier lösen nur dann das Schließen aus, wenn closeOnOutsideClick true ist -->
 	<div
 		bind:this={modalElement}
 		class="modal fixed top-0 right-0 left-0 bottom-0 bg-black/60 w-full h-screen max-h-[100dvh] {containerClassName} flex justify-center z-[9999] overflow-y-auto overscroll-contain"
 		in:fade={{ duration: 10 }}
 		on:mousedown={() => {
-			show = false;
+			if (closeOnOutsideClick) {
+				show = false;
+			}
 		}}
 	>
 		<div
-			class=" m-auto max-w-full {sizeToWidth(size)} {size !== 'full'
-				? 'mx-2'
-				: ''} shadow-3xl min-h-fit scrollbar-hidden {className}"
+			class="m-auto max-w-full {sizeToWidth(size)} {size !== 'full' ? 'mx-2' : ''} shadow-3xl min-h-fit scrollbar-hidden {className}"
 			in:flyAndScale
 			on:mousedown={(e) => {
 				e.stopPropagation();

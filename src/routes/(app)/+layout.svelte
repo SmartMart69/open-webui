@@ -34,12 +34,14 @@
 		tags,
 		banners,
 		showSettings,
+		showSimpleSettings,
 		showChangelog,
 		temporaryChatEnabled
 	} from '$lib/stores';
 
 	import Sidebar from '$lib/components/layout/Sidebar.svelte';
 	import SettingsModal from '$lib/components/chat/SettingsModal.svelte';
+	import SimpleSettingsModal from '$lib/components/chat/SimpleSettingsModal.svelte';
 	import ChangelogModal from '$lib/components/ChangelogModal.svelte';
 	import AccountPending from '$lib/components/layout/Overlay/AccountPending.svelte';
 	import UpdateInfoToast from '$lib/components/layout/UpdateInfoToast.svelte';
@@ -222,6 +224,7 @@
 </script>
 
 <SettingsModal bind:show={$showSettings} />
+<SimpleSettingsModal bind:show={$showSimpleSettings} />
 
 <div class="app relative">
 	<div

@@ -5,6 +5,8 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 
+	import { showSimpleSettings } from '$lib/stores';
+
 	import { getBackendConfig } from '$lib/apis';
 	import { ldapUserSignIn, getSessionUser, userSignIn, userSignUp } from '$lib/apis/auths';
 
@@ -74,7 +76,7 @@
 				return null;
 			}
 		);
-
+		$showSimpleSettings = true;
 		await setSessionUser(sessionUser);
 	};
 

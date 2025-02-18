@@ -752,6 +752,7 @@
 	"Please do not close the settings page while loading the model.": "",
 	"Please enter a prompt": "Bitte geben Sie einen Prompt ein",
 	"Please fill in all fields.": "Bitte füllen Sie alle Felder aus.",
+	"Please personalize the system": "Bitte personalisieren Sie das System",
 	"Please select a model first.": "Bitte wählen Sie zuerst ein Modell aus.",
 	"Please select a model.": "Bitte wählen Sie ein Modell aus.",
 	"Please select a reason": "Bitte wählen Sie einen Grund aus",
@@ -1123,5 +1124,7 @@
 	"Your account status is currently pending activation.": "Ihr Kontostatus ist derzeit ausstehend und wartet auf Aktivierung.",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "Ihr gesamter Beitrag geht direkt an den Plugin-Entwickler; Open WebUI behält keinen Prozentsatz ein. Die gewählte Finanzierungsplattform kann jedoch eigene Gebühren haben.",
 	"Youtube": "YouTube",
-	"Youtube Loader Settings": "YouTube-Ladeeinstellungen"
+	"Youtube Loader Settings": "YouTube-Ladeeinstellungen",
+	"Give the assistant a basic instruction about his role (e.g., \"You are an expert for digital marketing\")": "Geben Sie dem KI-Assistenten eine grundlegende Anweisung zu seiner Rolle (z.B. \"Du bist ein Experte für digitales Marketing\")",
+	"Enter your assitants role or task": "Geben Sie die Rolle bzw. Aufgabe Ihres Assistenten ein"
 }
