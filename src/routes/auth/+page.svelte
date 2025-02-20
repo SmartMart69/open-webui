@@ -30,6 +30,12 @@
 	let confirmPassword = '';
 	let ldapUsername = '';
 
+	const querystringValue = (key) => {
+		const querystring = window.location.search;
+		const urlParams = new URLSearchParams(querystring);
+		return urlParams.get(key);
+	};
+
 	let showPassword = false;
 	let showConfirmPassword = false;
 
@@ -52,7 +58,9 @@
 			$socket.emit('user-join', { auth: { token: sessionUser.token } });
 			await user.set(sessionUser);
 			await config.set(await getBackendConfig());
-			goto('/');
+
+			const redirectPath = querystringValue('redirect') || '/';
+			goto(redirectPath);
 		}
 	};
 
