@@ -74,19 +74,21 @@
 	export let codeInterpreterEnabled = false;
 
 $: {
+    let shouldEnableCodeInterpreter = false;
     if (atSelectedModel) {
         const model = $models.find(m => m.id === atSelectedModel.id);
         if (model?.info?.params?.code_interpreter_default) {
-            codeInterpreterEnabled = true;
+            shouldEnableCodeInterpreter = true;
         }
     } 
     else if (selectedModels && selectedModels.length === 1) {
         const modelId = selectedModels[0];
-        const model = $models.find(m => m.id === modelId);  
+        const model = $models.find(m => m.id === modelId);
         if (model?.info?.params?.code_interpreter_default) {
-            codeInterpreterEnabled = true;
+            shouldEnableCodeInterpreter = true;
         }
     }
+    codeInterpreterEnabled = shouldEnableCodeInterpreter;
 }
 
 	$: onChange({
