@@ -714,6 +714,23 @@
 						<Capabilities bind:capabilities />
 					</div>
 
+					<div class="my-2">
+						<hr class=" border-gray-100 dark:border-gray-850 my-1" />
+						<div class="flex">
+						  <div class="flex items-center gap-2 mr-3">
+							<input 
+							  type="checkbox" 
+							  class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800" 
+							  bind:checked={info.params.code_interpreter_default}
+							  id="code-interpreter-default"
+							/>
+							<label for="code-interpreter-default" class="py-0.5 text-sm cursor-pointer">
+							  {$i18n.t('Code Interpreter')}
+							</label>
+						  </div>
+						</div>
+					  </div>
+
 					<div class="my-2 text-gray-300 dark:text-gray-700">
 						<div class="flex w-full justify-between mb-2">
 							<div class=" self-center text-sm font-semibold">{$i18n.t('JSON Preview')}</div>
