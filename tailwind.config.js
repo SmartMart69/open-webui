@@ -26,6 +26,7 @@ export default {
 			typography: {
 				DEFAULT: {
 					css: {
+						fontFamily: "'OpenSans', sans-serif",
 						pre: false,
 						code: false,
 						'pre code': false,
