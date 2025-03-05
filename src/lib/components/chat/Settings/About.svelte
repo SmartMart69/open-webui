@@ -75,19 +75,6 @@
 			</div>
 		</div>
 
-		{#if ollamaVersion}
-			<hr class=" border-gray-100 dark:border-gray-850" />
-
-			<div>
-				<div class=" mb-2.5 text-sm font-medium">{$i18n.t('Ollama Version')}</div>
-				<div class="flex w-full">
-					<div class="flex-1 text-xs text-gray-700 dark:text-gray-200">
-						{ollamaVersion ?? 'N/A'}
-					</div>
-				</div>
-			</div>
-		{/if}
-
 		<hr class=" border-gray-100 dark:border-gray-850" />
 
 		<div class="mt-2 text-xs text-gray-400 dark:text-gray-500">
