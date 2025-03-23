@@ -108,15 +108,20 @@ class ChatTable:
     def insert_new_chat(self, user_id: str, form_data: ChatForm) -> Optional[ChatModel]:
         with get_db() as db:
             id = str(uuid.uuid4())
+            initial_title = form_data.chat.get("title", "").strip()
+            if initial_title:
+                title = initial_title
+            else:
+                messages = form_data.chat.get("history", {}).get("messages", {})
+                first_message = next(iter(messages.values()), {}) if isinstance(messages, dict) else {}
+                first_content = first_message.get("content", "").strip()
+                title = first_content if first_content else "New Chat"
+            form_data.chat["title"] = title
             chat = ChatModel(
                 **{
                     "id": id,
                     "user_id": user_id,
-                    "title": (
-                        form_data.chat["title"]
-                        if "title" in form_data.chat
-                        else "New Chat"
-                    ),
+                    "title": title,
                     "chat": form_data.chat,
                     "created_at": int(time.time()),
                     "updated_at": int(time.time()),
@@ -128,6 +133,7 @@ class ChatTable:
             db.commit()
             db.refresh(result)
             return ChatModel.model_validate(result) if result else None
+
 
     def import_chat(
         self, user_id: str, form_data: ChatImportForm

@@ -1824,7 +1824,7 @@
 		if (!$temporaryChatEnabled) {
 			chat = await createNewChat(localStorage.token, {
 				id: _chatId,
-				title: $i18n.t('New Chat'),
+				title: "",
 				models: selectedModels,
 				system: $settings.system ?? undefined,
 				params: params,
