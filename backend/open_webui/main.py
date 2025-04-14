@@ -1429,30 +1429,33 @@ async def oauth_callback(provider: str, request: Request, response: Response):
 
 @app.get("/manifest.json")
 async def get_manifest_json():
-    return {
-        "name": app.state.WEBUI_NAME,
-        "short_name": app.state.WEBUI_NAME,
-        "description": "OmniChat is an open, extensible, user-friendly interface for AI that adapts to your workflow.",
-        "start_url": "/",
-        "display": "standalone",
-        "background_color": "#000000",
-        "theme_color": "#000000",
-        "orientation": "natural",
-        "icons": [
-            {
-                "src": "/static/web-app-manifest-192x192.png",
-                "sizes": "192x192",
-                "type": "image/png",
-                "purpose": "any"
-            },
-            {
-                "src": "/static/web-app-manifest-512x512.png",
-                "sizes": "512x512",
-                "type": "image/png",
-                "purpose": "maskable"
-            }
-        ]
-    }
+    if app.state.EXTERNAL_PWA_MANIFEST_URL:
+       return requests.get(app.state.EXTERNAL_PWA_MANIFEST_URL).json()
+    else:
+        return {
+            "name": app.state.WEBUI_NAME,
+            "short_name": app.state.WEBUI_NAME,
+            "description": "OmniChat is an open, extensible, user-friendly interface for AI that adapts to your workflow.",
+            "start_url": "/",
+            "display": "standalone",
+            "background_color": "#000000",
+            "theme_color": "#000000",
+            "orientation": "natural",
+            "icons": [
+                {
+                    "src": "/static/web-app-manifest-192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png",
+                    "purpose": "any"
+                },
+                {
+                    "src": "/static/web-app-manifest-512x512.png",
+                    "sizes": "512x512",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                }
+            ]
+        }
 
 
 @app.get("/opensearch.xml")
