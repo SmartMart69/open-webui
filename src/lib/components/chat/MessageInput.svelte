@@ -107,7 +107,8 @@ $: {
 		files,
 		selectedToolIds,
 		imageGenerationEnabled,
-		webSearchEnabled
+		webSearchEnabled,
+		codeInterpreterEnabled
 	});
 
 	let showTools = false;
