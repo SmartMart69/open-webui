@@ -14,7 +14,6 @@
 	import { WEBUI_NAME, config, user, socket } from '$lib/stores';
 
 	import { generateInitialsImage, canvasPixelTest } from '$lib/utils';
-	import { setupSocket } from '$lib/utils/websocket';
 
 	import Spinner from '$lib/components/common/Spinner.svelte';
 	import OnBoarding from '$lib/components/OnBoarding.svelte';
@@ -55,10 +54,6 @@
 			if (sessionUser.token) {
 				localStorage.token = sessionUser.token;
 			}
-			if (!$socket) {
-				await setupSocket($config.features?.enable_websocket ?? true);
-			}
-
 			$socket.emit('user-join', { auth: { token: sessionUser.token } });
 			await user.set(sessionUser);
 			await config.set(await getBackendConfig());
@@ -205,7 +200,7 @@
 						crossorigin="anonymous"
 						src="{WEBUI_BASE_URL}/static/splash.png"
 						class=" w-6 rounded-full"
-						alt="logo"
+						alt=""
 					/>
 				</div>
 			</div>
@@ -252,7 +247,7 @@
 								</div>
 
 								{#if $config?.onboarding ?? false}
-									<div class=" mt-1 text-xs font-medium text-gray-500">
+									<div class="mt-1 text-xs font-medium text-gray-600 dark:text-gray-500">
 										ⓘ {$WEBUI_NAME}
 										{$i18n.t(
 											'does not make any external connections, and your data stays securely on your locally hosted server.'
